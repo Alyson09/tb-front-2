@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from 'styled-components';
-import CharacterDetailPage from "./pages/CharacterListPage/CharacterDetailPage/CharacterDetailPage";
+import CharacterDetailPage from "./pages/CharacterDetailPage/CharacterDetailPage";
 
 const Container = styled.div`
   background-color: #00cccc;
@@ -54,7 +54,7 @@ function App() {
         />
       )}
       {currentPage === "list" ? (
-        <Button onClick={handleButtonClick}>SELECIONE O DIGIMON</Button>
+        <Button onClick={handleButtonClick}>START</Button>
       ) : (
         <CharacterDetailPage />
       )}
