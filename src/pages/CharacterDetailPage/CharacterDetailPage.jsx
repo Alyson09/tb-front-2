@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import App from "../../App";
-import { Button, Container, FilterContainer, CardDigimon} from "../../Styles";
+import { Button, Container, FilterContainer} from "../../Styles";
 import axios from "axios";
-
-
+import DigimonCard from "../../Digicard";
 
 function CharacterDetailPage() {
   const [currentPage, setCurrentPage] = useState("detail");
@@ -18,6 +17,7 @@ function CharacterDetailPage() {
       const levelMatch = searchLevel === "" || digimon.level === searchLevel;
       return nameMatch && levelMatch;
     });
+
     setFilteredDigimons(filtered);
   }, [digimonData, searchName, searchLevel]);
 
@@ -69,6 +69,7 @@ function CharacterDetailPage() {
           Para este fim, cada criança é agrupada com um parceiro Digimon que tem de ajudar a evoluir para níveis mais poderosos e poder,<br/>
           assim, derrotar os inimigos. Enquanto sobrevivem neste novo mundo selvagem, vão descobrindo coisas sobre ele e sobre si próprios.
           </p>
+          <p></p>
           <Button onClick={() => handleButtonClick("characterList")}>VOLTAR</Button>
           <Button onClick={() => handleButtonClick("list")}>DIGIMONS</Button>
         </div>
@@ -98,17 +99,17 @@ function CharacterDetailPage() {
                 </select>
               </div>
             </FilterContainer>
-            <h2>Lista de Digimons</h2>
             <ul>
+            <div className="card-container">
               {filteredDigimons.map((digimon, index) => (
-                < CardDigimon>
-                <div key={index}>
-                  <h3>{digimon.name}</h3>
-                  <h3>{digimon.level}</h3>
-                  <img src={digimon.img} alt={digimon.name} />
-                </div>
-                </CardDigimon>
+                 <DigimonCard
+                 key={index}
+                 name={digimon.name}
+                 level={digimon.level}
+                 img={digimon.img}
+               />
               ))}
+              </div>
             </ul>
           </Container>
         </div>
